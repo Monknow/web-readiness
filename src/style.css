@@ -7,7 +7,7 @@
 }
 
 :root {
-	--rem-value: clamp(12px, 1.8vw, 18px);
+	--rem-value: clamp(12px, 2.5vw, 18px);
 	--inner-spacing: 1.5rem;
 	--outer-spacing: 3.5rem;
 
@@ -34,9 +34,9 @@ html {
 body {
 	display: flex;
 	flex-flow: column;
-
 	justify-content: center;
 
+	height: 100%;
 	overflow: hidden;
 
 	background: var(--background);
