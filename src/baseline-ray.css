@@ -55,7 +55,7 @@ baseline-ray {
 			width: 1.5rem;
 			height: calc(var(--ray-section-height) * 10);
 
-			transform: translateY(-100px);
+			transform: translateY(-5rem);
 
 			opacity: 0.2;
 			background-color: #fff3;

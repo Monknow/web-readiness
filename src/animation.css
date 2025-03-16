@@ -9,6 +9,8 @@ body {
 	}
 
 	p {
+		opacity: 0;
+
 		animation: popup 1s ease-in forwards;
 		animation-delay: 2.5s;
 	}
@@ -79,5 +81,16 @@ baseline-ray {
 
 	to {
 		clip-path: polygon(-100% -100%, 100% -100%, 120% 120%, 0% 120%);
+	}
+}
+
+@media screen and (width < 600px) {
+	.intro {
+		h1 {
+			opacity: 0;
+
+			animation: popup 1s ease-in forwards;
+			animation-delay: 2.5s;
+		}
 	}
 }
