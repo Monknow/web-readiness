@@ -1,0 +1,83 @@
+body {
+	animation: popout 1s ease-in forwards;
+	animation-delay: 3.5s;
+}
+
+.intro {
+	h1 {
+		animation: typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite;
+	}
+
+	p {
+		animation: popup 1s ease-in forwards;
+		animation-delay: 2.5s;
+	}
+}
+
+.readiness {
+	header,
+	.caption {
+		opacity: 0;
+		animation: popup 400ms ease-in forwards;
+		animation-delay: 6s;
+	}
+}
+
+baseline-ray {
+	ul {
+		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+
+		animation: cast-ray 0.5s forwards;
+		animation-delay: calc(4.5s + var(--sibling-index) * 0.1s);
+	}
+}
+
+@keyframes popout {
+	from {
+		transform: translateY(0);
+	}
+
+	to {
+		transform: translateY(-100vh);
+	}
+}
+
+@keyframes popup {
+	from {
+		transform: translateY(50%) scale(0.9);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0) scale(1.1);
+	}
+}
+
+@keyframes typing {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+@keyframes blink-caret {
+	from,
+	to {
+		border-color: transparent;
+	}
+	50% {
+		border-color: orange;
+	}
+}
+
+@keyframes cast-ray {
+	from {
+		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+	}
+
+	to {
+		clip-path: polygon(-100% -100%, 100% -100%, 120% 120%, 0% 120%);
+	}
+}
