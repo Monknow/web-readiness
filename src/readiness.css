@@ -2,7 +2,7 @@
 	position: relative;
 
 	width: 100%;
-	height: 100vh;
+	height: 100dvh;
 
 	padding: var(--outer-spacing);
 
@@ -74,7 +74,7 @@
 
 .caption {
 	position: absolute;
-	top: calc(var(--outer-spacing) + 100px - 6vw);
+	top: calc(var(--outer-spacing) + 150px - 6vw);
 	left: var(--outer-spacing);
 
 	ul {
