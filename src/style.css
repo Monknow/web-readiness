@@ -11,10 +11,10 @@
 	--inner-spacing: 1.5rem;
 	--outer-spacing: 3.5rem;
 
-	--chrome-color: oklch(63.98% 0.2175 24.16 / 0.9);
-	--firefox-color: oklch(79.27% 0.171 70.67 / 0.9);
-	--edge-color: oklch(66.89% 0.1068 169.71 / 0.9);
 	--safari-color: oklch(50.84% 0.2484 285.61 / 0.9);
+	--firefox-color: oklch(68% 0.171 70.67 / 0.9);
+	--edge-color: oklch(60% 0.1068 169.71 / 0.9);
+	--chrome-color: oklch(55% 0.2175 24.16 / 0.9);
 	--unavailable-color: oklch(90.37% 0 0 / 33.33%);
 
 	--background: radial-gradient(circle at bottom center, lch(16.13% 41.77 303) 30%, lch(7.36% 0.52 19.7) 100%);
