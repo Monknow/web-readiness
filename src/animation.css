@@ -18,7 +18,8 @@ body {
 
 .readiness {
 	header,
-	.caption {
+	.caption,
+	.show-list {
 		opacity: 0;
 		animation: popup 400ms ease-in forwards;
 		animation-delay: 6s;

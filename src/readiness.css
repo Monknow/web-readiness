@@ -1,10 +1,15 @@
 .readiness {
 	position: relative;
 
-	width: 100%;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	gap: var(--outer-spacing);
+
 	height: 100dvh;
 
 	padding: var(--outer-spacing);
+	padding-bottom: calc(var(--outer-spacing) * 1.5);
 
 	header {
 		display: flex;
@@ -21,6 +26,24 @@
 			color: var(--text-color);
 			font-size: 0.8rem;
 		}
+	}
+}
+
+.readiness.list {
+	display: flex;
+	flex-flow: column;
+	gap: var(--outer-spacing);
+
+	.rays {
+		display: flex;
+		flex-flow: column;
+		align-items: flex-start;
+		gap: var(--inner-spacing);
+
+		padding: var(--inner-spacing);
+
+		overflow: auto;
+		scrollbar-width: thin;
 	}
 }
 
@@ -73,16 +96,16 @@
 }
 
 .caption {
-	position: absolute;
-	top: calc(var(--outer-spacing) + 150px - 6vw);
-	left: var(--outer-spacing);
-
 	ul {
 		display: flex;
-		flex-flow: column;
+		flex-flow: row;
 		gap: var(--inner-spacing);
 
 		list-style: none inside;
+
+		@media screen and (width < 600px) {
+			flex-flow: column;
+		}
 	}
 
 	li {
@@ -117,5 +140,21 @@
 
 	.safari::before {
 		--browser-color: var(--safari-color);
+	}
+}
+.show-list {
+	position: absolute;
+	bottom: var(--inner-spacing);
+	left: var(--outer-spacing);
+
+	display: flex;
+	gap: 10px;
+	align-items: center;
+
+	font-size: 0.9rem;
+
+	input[type="checkbox"] {
+		height: 16px;
+		width: 16px;
 	}
 }

@@ -29,6 +29,7 @@ html {
 	color: var(--text-color);
 
 	overflow: hidden;
+	color-scheme: dark;
 }
 
 body {
@@ -36,9 +37,11 @@ body {
 	flex-flow: column;
 	justify-content: center;
 
-	height: 100%;
 	overflow: hidden;
 
 	background: var(--background);
-	background-repeat: no-repeat;
+}
+
+a:not(:is(:hover, :focus)) {
+	text-decoration-color: color-mix(in srgb, currentColor, transparent 75%);
 }

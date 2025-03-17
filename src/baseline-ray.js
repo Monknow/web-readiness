@@ -36,13 +36,13 @@ class BaselineRay extends HTMLElement {
 
 		this.innerHTML = `
 		<a href="${spec.links[0].link}" target="_blank">
+		<strong>${name}</strong>
 			<ul>
 				<li class="safari" data-status="${safariStatus}"></li>
 				<li class="firefox" data-status="${firefoxStatus}"></li>
 				<li class="edge" data-status="${edgeStatus}"></li>
 				<li class="chrome" data-status="${chromeStatus}"></li>
 				</ul>
-			<strong>${name}</strong>
 		</a>	
 		`;
 	}
