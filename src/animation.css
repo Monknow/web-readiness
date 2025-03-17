@@ -46,7 +46,7 @@ baseline-ray {
 
 @keyframes popup {
 	from {
-		transform: translateY(50%) scale(0.9);
+		transform: translateY(25px) scale(0.9);
 	}
 
 	to {
