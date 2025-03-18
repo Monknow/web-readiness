@@ -11,6 +11,8 @@ function removeAnimations(element) {
 }
 
 async function animateRainbowToList() {
+	toggleListInput.disabled = true;
+
 	const rays = document.querySelectorAll(`baseline-ray ul`);
 	const rayTitles = document.querySelectorAll(`baseline-ray strong`);
 
@@ -64,25 +66,33 @@ async function animateRainbowToList() {
 		rayToListAnimation.commitStyles();
 	});
 
-	rayTitles.forEach(async (rayTitle, index) => {
-		const rayTitleToListAnimation = rayTitle.animate(
-			{
-				clipPath: [`polygon(0 0, 0 0, 0 100%, 0% 100%)`, `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`],
-			},
-			{
-				duration: 500,
-				delay: 50 * index,
-				easing: "ease-in",
-				fill: "forwards",
-			}
-		);
+	await Promise.all(
+		Array.from(rayTitles).map(async (rayTitle, index) => {
+			const rayTitleToListAnimation = rayTitle.animate(
+				{
+					clipPath: [`polygon(0 0, 0 0, 0 100%, 0% 100%)`, `polygon(0 0, 100% 0, 100% 100%, 0% 100%)`],
+				},
+				{
+					duration: 500,
+					delay: 50 * index,
+					easing: "ease-in",
+					fill: "forwards",
+				}
+			);
 
-		await rayTitleToListAnimation.finished;
-		rayTitleToListAnimation.commitStyles();
-	});
+			await rayTitleToListAnimation.finished;
+			rayTitleToListAnimation.commitStyles();
+
+			return rayTitleToListAnimation.finished;
+		})
+	);
+
+	toggleListInput.disabled = false;
 }
 
 async function animateListToRainbow() {
+	toggleListInput.disabled = true;
+
 	const rays = document.querySelectorAll(`baseline-ray ul`);
 	const rayTitles = document.querySelectorAll(`baseline-ray strong`);
 
@@ -129,38 +139,41 @@ async function animateListToRainbow() {
 	readinessSection.classList.toggle("rainbow");
 	readinessSection.classList.toggle("list");
 
-	rays.forEach(async (ray, index) => {
-		const rayToRainbowAnimation = ray.animate(
-			{
-				clipPath: [
-					`polygon(0 100%, 100% 100%, 100% 100%, 0 100%)`,
-					`polygon(-100% -100%, 100% -100%, 120% 120%, 0% 120%)`,
-				],
-			},
-			{
-				duration: 400,
-				delay: 30 * index,
-				easing: "ease-in",
-				fill: "forwards",
-			}
-		);
+	await Promise.all(
+		Array.from(rays).map(async (ray, index) => {
+			const rayToRainbowAnimation = ray.animate(
+				{
+					clipPath: [
+						`polygon(0 100%, 100% 100%, 100% 100%, 0 100%)`,
+						`polygon(-100% -100%, 100% -100%, 120% 120%, 0% 120%)`,
+					],
+				},
+				{
+					duration: 400,
+					delay: 30 * index,
+					easing: "ease-in",
+					fill: "forwards",
+				}
+			);
 
-		await rayToRainbowAnimation.finished;
-		rayToRainbowAnimation.commitStyles();
-	});
+			await rayToRainbowAnimation.finished;
+			rayToRainbowAnimation.commitStyles();
+
+			return rayToRainbowAnimation.finished;
+		})
+	);
 
 	rayTitles.forEach(async (rayTitle, index) => {
 		removeAnimations(rayTitle);
 	});
+
+	toggleListInput.disabled = false;
 }
 
 toggleListInput.addEventListener("change", async (event) => {
-	toggleListInput.disabled = true;
-
 	if (event.target.checked) {
 		await animateRainbowToList();
 	} else {
 		await animateListToRainbow();
 	}
-	toggleListInput.disabled = false;
 });
