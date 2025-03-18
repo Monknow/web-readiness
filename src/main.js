@@ -19,8 +19,14 @@ const toggleListInput = document.querySelector(`input[name="toggle-list"`);
 const readinessSection = document.querySelector(".readiness");
 
 toggleListInput.addEventListener("change", () => {
-	readinessSection.classList.toggle("list");
-	readinessSection.classList.toggle("rainbow");
-});
+	if (!document.startViewTransition) {
+		readinessSection.classList.toggle("rainbow");
+		readinessSection.classList.toggle("list");
+		return;
+	}
 
-console.log(toggleListInput);
+	document.startViewTransition(() => {
+		readinessSection.classList.toggle("rainbow");
+		readinessSection.classList.toggle("list");
+	});
+});
