@@ -45,6 +45,10 @@
 		overflow: auto;
 		scrollbar-width: thin;
 	}
+
+	strong {
+		clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+	}
 }
 
 .readiness:has(.caption .safari:hover) {
@@ -98,13 +102,13 @@
 .caption {
 	ul {
 		display: flex;
-		flex-flow: row;
+		flex-flow: row wrap;
 		gap: var(--inner-spacing);
 
 		list-style: none inside;
 
-		@media screen and (width < 600px) {
-			flex-flow: column;
+		@media screen and (width < 400px) {
+			flex: 1 1 45%;
 		}
 	}
 
@@ -115,11 +119,15 @@
 
 		cursor: default;
 
+		@media screen and (width < 400px) {
+			flex: 1 1 45%;
+		}
+
 		&::before {
 			display: block;
 
 			content: "";
-			width: 25px;
+			width: 1.5rem;
 			aspect-ratio: 1;
 
 			background-color: var(--browser-color);
@@ -154,7 +162,7 @@
 	font-size: 0.9rem;
 
 	input[type="checkbox"] {
-		height: 16px;
-		width: 16px;
+		height: 20px;
+		width: 20px;
 	}
 }

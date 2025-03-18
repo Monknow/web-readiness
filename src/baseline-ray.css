@@ -11,7 +11,7 @@
 	strong {
 		display: none;
 
-		z-index: 3;
+		z-index: 4;
 		position: absolute;
 		left: 50%;
 		bottom: var(--outer-spacing);
