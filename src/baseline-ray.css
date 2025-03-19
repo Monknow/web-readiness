@@ -7,6 +7,7 @@
 .readiness.rainbow baseline-ray {
 	--ray-section-height: clamp(30px, 4vw, 80px);
 	--ray-section-width: 1.2rem;
+	--ray-separation: calc(clamp(50px, 20vw, 200px) * -1);
 
 	strong {
 		display: none;
@@ -30,13 +31,13 @@
 
 	ul {
 		position: absolute;
-		bottom: calc(var(--outer-spacing) + (75px - 6vw));
+		bottom: calc(var(--outer-spacing) + (60px - 5vw));
 		left: 50%;
 
 		--position: calc(180 / var(--sibling-count) * var(--sibling-index) - 90);
 
 		--rotation: calc(var(--position) * 1deg);
-		transform: translateX(-50%) rotate(var(--rotation)) translateY(-5rem);
+		transform: translateX(-50%) rotate(var(--rotation)) translateY(var(--ray-separation));
 		transform-origin: bottom center;
 
 		&:hover {
