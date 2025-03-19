@@ -6,7 +6,7 @@ class BaselineRay extends HTMLElement {
 	}
 
 	static get observedAttributes() {
-		return ["data-feature"];
+		return ["data-feature", "link", "name"];
 	}
 
 	attributeChangedCallback(property, oldValue, newValue) {
@@ -27,24 +27,26 @@ class BaselineRay extends HTMLElement {
 	}
 
 	async connectedCallback() {
-		const {browser_implementations, name, spec} = await this.#fetchFeature(API_ENDPOINT, this["data-feature"]);
+		const data = await this.#fetchFeature(API_ENDPOINT, this["data-feature"]);
 
-		const chromeStatus = browser_implementations?.chrome?.status ?? "unavailable";
-		const edgeStatus = browser_implementations?.edge?.status ?? "unavailable";
-		const firefoxStatus = browser_implementations?.firefox?.status ?? "unavailable";
-		const safariStatus = browser_implementations?.safari?.status ?? "unavailable";
+		const link = data?.spec?.links[0].link ?? this["link"];
+
+		const chromeStatus = data?.browser_implementations?.chrome?.status ?? "unavailable";
+		const edgeStatus = data?.browser_implementations?.edge?.status ?? "unavailable";
+		const firefoxStatus = data?.browser_implementations?.firefox?.status ?? "unavailable";
+		const safariStatus = data?.browser_implementations?.safari?.status ?? "unavailable";
 
 		this.innerHTML = `
-		<a href="${spec.links[0].link}" target="_blank">
-		<strong>${name}</strong>
+			<a href="${link}" target="_blank">
+			<strong>${data?.name ?? this["name"]}</strong>
 			<ul>
-				<li class="safari" data-status="${safariStatus}"></li>
-				<li class="firefox" data-status="${firefoxStatus}"></li>
-				<li class="edge" data-status="${edgeStatus}"></li>
-				<li class="chrome" data-status="${chromeStatus}"></li>
-				</ul>
-		</a>	
-		`;
+			<li class="safari" data-status="${safariStatus}"></li>
+			<li class="firefox" data-status="${firefoxStatus}"></li>
+			<li class="edge" data-status="${edgeStatus}"></li>
+			<li class="chrome" data-status="${chromeStatus}"></li>
+			</ul>
+			</a>	
+			`;
 	}
 }
 

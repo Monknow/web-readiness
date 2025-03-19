@@ -43,6 +43,7 @@
 		padding: var(--inner-spacing);
 
 		overflow: auto;
+		scrollbar-gutter: stable;
 		scrollbar-width: thin;
 	}
 

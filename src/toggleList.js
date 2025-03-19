@@ -1,8 +1,21 @@
 const toggleListInput = document.querySelector(`input[name="toggle-list"`);
 const readinessSection = document.querySelector(".readiness");
+const raysContainer = document.querySelector(".rays");
 
 function delay(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isElementVisibleInContainer(element, container) {
+	const rect = element.getBoundingClientRect();
+	const containerRect = container.getBoundingClientRect();
+
+	const topIsVisible = rect.top >= containerRect.top && rect.top < containerRect.bottom;
+	const bottomIsVisible = rect.bottom > containerRect.top && rect.bottom <= containerRect.bottom;
+	const leftIsVisible = rect.left >= containerRect.left && rect.left < containerRect.right;
+	const rightIsVisible = rect.right > containerRect.left && rect.right <= containerRect.right;
+
+	return (topIsVisible || bottomIsVisible) && (leftIsVisible || rightIsVisible);
 }
 
 function removeAnimations(element) {
@@ -33,7 +46,6 @@ async function animateRainbowToList() {
 				}
 			);
 
-			await removeRayFromRainbowAnimation.finished;
 			removeRayFromRainbowAnimation.commitStyles();
 
 			return removeRayFromRainbowAnimation.finished;
@@ -48,6 +60,7 @@ async function animateRainbowToList() {
 
 	readinessSection.classList.toggle("rainbow");
 	readinessSection.classList.toggle("list");
+	raysContainer.scrollTo(0, 0);
 
 	rays.forEach(async (ray, index) => {
 		const rayToListAnimation = ray.animate(
@@ -62,7 +75,6 @@ async function animateRainbowToList() {
 			}
 		);
 
-		await rayToListAnimation.finished;
 		rayToListAnimation.commitStyles();
 	});
 
@@ -80,7 +92,6 @@ async function animateRainbowToList() {
 				}
 			);
 
-			await rayTitleToListAnimation.finished;
 			rayTitleToListAnimation.commitStyles();
 
 			return rayTitleToListAnimation.finished;
@@ -92,45 +103,48 @@ async function animateRainbowToList() {
 
 async function animateListToRainbow() {
 	toggleListInput.disabled = true;
+	raysContainer.classList.toggle("stop-scrolling");
 
 	const rays = document.querySelectorAll(`baseline-ray ul`);
 	const rayTitles = document.querySelectorAll(`baseline-ray strong`);
 
 	await Promise.all(
 		Array.from(rays).map(async (ray, index) => {
+			let duration = isElementVisibleInContainer(ray, raysContainer) ? 500 : 0;
+			let delay = isElementVisibleInContainer(ray, raysContainer) ? 50 * index : 0;
+
 			const removeRayFromListAnimation = ray.animate(
 				{
 					clipPath: [`polygon(0 0, 0 0, 0 100%, 0 100%)`],
 				},
 				{
-					duration: 500,
-					delay: 50 * index,
+					duration,
+					delay,
 					easing: "ease-in",
 					fill: "forwards",
 				}
 			);
 
-			await removeRayFromListAnimation.finished;
 			removeRayFromListAnimation.commitStyles();
 
 			return removeRayFromListAnimation.finished;
 		}),
 
-		Array.from(rayTitles).map(async (ray, index) => {
-			const removeRayTitleFromListAnimation = ray.animate(
+		Array.from(rayTitles).map(async (rayTitle, index) => {
+			let duration = isElementVisibleInContainer(rayTitle, raysContainer) ? 500 : 0;
+			let delay = isElementVisibleInContainer(rayTitle, raysContainer) ? 50 * index : 0;
+
+			const removeRayTitleFromListAnimation = rayTitle.animate(
 				{
 					clipPath: [`polygon(0 0, 0 0, 0 100%, 0 100%)`],
 				},
 				{
-					duration: 500,
-					delay: 50 * index,
+					duration,
+					delay,
 					easing: "ease-in",
 					fill: "forwards",
 				}
 			);
-
-			await removeRayTitleFromListAnimation.finished;
-			// removeRayTitleFromListAnimation.commitStyles();
 
 			return removeRayTitleFromListAnimation.finished;
 		})
@@ -156,7 +170,6 @@ async function animateListToRainbow() {
 				}
 			);
 
-			await rayToRainbowAnimation.finished;
 			rayToRainbowAnimation.commitStyles();
 
 			return rayToRainbowAnimation.finished;
@@ -168,6 +181,7 @@ async function animateListToRainbow() {
 	});
 
 	toggleListInput.disabled = false;
+	raysContainer.classList.toggle("stop-scrolling");
 }
 
 toggleListInput.addEventListener("change", async (event) => {

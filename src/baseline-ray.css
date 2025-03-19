@@ -6,7 +6,7 @@
 
 .readiness.rainbow baseline-ray {
 	--ray-section-height: clamp(30px, 4vw, 80px);
-	--ray-section-width: 1.5rem;
+	--ray-section-width: 1.2rem;
 
 	strong {
 		display: none;
@@ -40,7 +40,7 @@
 		transform-origin: bottom center;
 
 		&:hover {
-			z-index: 3;
+			z-index: 2;
 		}
 
 		&::before {
@@ -48,13 +48,13 @@
 			display: block;
 			position: absolute;
 
-			width: 1.5rem;
+			width: var(--ray-section-width);
 			height: calc(var(--ray-section-height) * 10);
 
 			transform: translateY(-5rem);
 
-			opacity: 0.2;
-			background-color: #fff3;
+			opacity: 0.1;
+			background-color: #fff2;
 
 			transition: opacity 150ms;
 		}
@@ -101,14 +101,14 @@ baseline-ray {
 
 		--background-color: var(--unavailable-color);
 
-		transition: transform 100ms, opacity 200ms;
-
 		background-color: var(--background-color);
 		background: linear-gradient(
 			30deg,
 			var(--background-color) 0%,
 			lch(from var(--background-color) calc(l + 20) c h / alpha) 100%
 		);
+
+		transition: transform 100ms, opacity 200ms;
 
 		&:hover {
 			transform: scale(1.1);
