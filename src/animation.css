@@ -1,6 +1,10 @@
+:root {
+	--intro-animation-delay: 2.5s;
+}
+
 body {
 	animation: popout 1s ease-in forwards;
-	animation-delay: 3.5s;
+	animation-delay: calc(var(--intro-animation-delay) + 1s);
 }
 
 .intro {
@@ -12,7 +16,7 @@ body {
 		opacity: 0;
 
 		animation: popup 1s ease-in forwards;
-		animation-delay: 2.5s;
+		animation-delay: var(--intro-animation-delay);
 	}
 }
 
@@ -22,7 +26,7 @@ body {
 	.show-list {
 		opacity: 0;
 		animation: popup 400ms ease-in forwards;
-		animation-delay: 6s;
+		animation-delay: calc(var(--intro-animation-delay) + 3.5s);
 	}
 }
 
@@ -35,7 +39,7 @@ baseline-ray {
 		clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
 
 		animation: cast-ray 0.5s forwards;
-		animation-delay: calc(4.5s + var(--sibling-index) * 0.1s);
+		animation-delay: calc(calc(var(--intro-animation-delay) + 2s) + var(--sibling-index) * 50ms);
 	}
 }
 
@@ -90,12 +94,16 @@ baseline-ray {
 }
 
 @media screen and (width < 600px) {
+	:root {
+		--intro-animation-delay: 500ms;
+	}
+
 	.intro {
 		h1 {
 			opacity: 0;
 
 			animation: popup 1s ease-in forwards;
-			animation-delay: 1.5s;
+			animation-delay: var(--intro-animation-delay);
 		}
 	}
 }
