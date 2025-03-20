@@ -27,7 +27,7 @@ class BaselineRay extends HTMLElement {
 	}
 
 	async connectedCallback() {
-		const data = await this.#fetchFeature(API_ENDPOINT, this["data-feature"]);
+		const data = this["link"] ? undefined : await this.#fetchFeature(API_ENDPOINT, this["data-feature"]);
 
 		const link = data?.spec?.links[0].link ?? this["link"];
 

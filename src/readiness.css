@@ -3,7 +3,7 @@
 
 	display: grid;
 	grid-template-columns: 1fr auto 1fr;
-	grid-template-rows: auto;
+	grid-template-rows: min-content;
 	grid-template-areas: "caption header .";
 	gap: var(--outer-spacing);
 
