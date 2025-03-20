@@ -22,7 +22,7 @@ class BaselineRay extends HTMLElement {
 
 			return data;
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			console.error(`Data for ${featureID} doesn't exist yet :(`);
 		}
 	}
 

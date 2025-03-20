@@ -63,7 +63,7 @@
 	baseline-ray .safari[data-status="available"] {
 		z-index: 5;
 		position: relative;
-		/* transform: scale(1.1); */
+		transform: scale(1.1);
 	}
 
 	baseline-ray li:not(.safari[data-status="available"]) {
@@ -75,7 +75,7 @@
 	baseline-ray .firefox[data-status="available"] {
 		z-index: 5;
 		position: relative;
-		/* transform: scale(1.1); */
+		transform: scale(1.1);
 	}
 
 	baseline-ray li:not(.firefox[data-status="available"]) {
@@ -87,7 +87,7 @@
 	baseline-ray .edge[data-status="available"] {
 		z-index: 5;
 		position: relative;
-		/* transform: scale(1.1); */
+		transform: scale(1.1);
 	}
 
 	baseline-ray li:not(.edge[data-status="available"]) {
@@ -99,7 +99,7 @@
 	baseline-ray .chrome[data-status="available"] {
 		z-index: 5;
 		position: relative;
-		/* transform: scale(1.1); */
+		transform: scale(1.1);
 	}
 
 	baseline-ray li:not(.chrome[data-status="available"]) {
