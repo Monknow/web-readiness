@@ -152,6 +152,7 @@
 		--browser-color: var(--safari-color);
 	}
 }
+
 .show-list {
 	position: absolute;
 	bottom: var(--inner-spacing);
