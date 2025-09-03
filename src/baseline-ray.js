@@ -36,9 +36,11 @@ class BaselineRay extends HTMLElement {
 		const firefoxStatus = data?.browser_implementations?.firefox?.status ?? "unavailable";
 		const safariStatus = data?.browser_implementations?.safari?.status ?? "unavailable";
 
+		const displayName = data?.name?.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
 		this.innerHTML = `
 			<a href="${link}" target="_blank">
-			<strong>${data?.name ?? this["name"]}</strong>
+			<strong>${displayName ?? this["name"]}</strong>
 			<ul>
 			<li class="safari" data-status="${safariStatus}"></li>
 			<li class="firefox" data-status="${firefoxStatus}"></li>
